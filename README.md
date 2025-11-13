@@ -1,4 +1,3 @@
-SPrUCE tool to estimate nucleotide diversity from Ultraconserved elements
 #SPrUCE  
 **SPrUCE: Sigmoid Pi Requiring Ultraconserved Elements**  
 Tool for estimating nucleotide diversity (π) from UCE alignments.
