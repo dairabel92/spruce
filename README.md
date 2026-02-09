@@ -1,4 +1,3 @@
-SPrUCE tool to estimate nucleotide diversity from Ultraconserved elements
 #SPrUCE  
 **SPrUCE: Sigmoid Pi Requiring Ultraconserved Elements**  
 Tool for estimating nucleotide diversity (π) from UCE alignments.
@@ -46,10 +45,10 @@ Required arguments:
 
 
 ### **STACK**
-Fits the Gompertz decay curve separately to each UCE and combines results.
+Stacks (aggregates) per-position nucleotide diversity (π) across UCEs. Fits the Gompertz decay curve.
 
 ### **CONCAT**
-Concatenates all UCE flanks and fits a single global Gompertz model.
+Fits a Gompertz model to individual UCE locus, treating loci independently rather than stacking by position.
 
 SPrUCE produces:
 
