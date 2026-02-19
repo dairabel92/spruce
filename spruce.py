@@ -28,13 +28,19 @@ import multiprocessing
 from collections import Counter, defaultdict
 from random import choice
 import statistics
+import pdb
+import numpy as np
+from scipy.optimize import minimize
+from scipy.optimize import Bounds
+from scipy.interpolate import UnivariateSpline
+import pandas as pd
+import logging
 
 from Bio import AlignIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio.Align import MultipleSeqAlignment
 
-import logging
 
 def setup_logging(args):
     logging.basicConfig(
@@ -61,15 +67,6 @@ def get_alignment_files(log, directory, file_format):
         log.critical(f"No alignment files found in {directory}.")
         sys.exit(1)
     return files
-
-import pdb
-
-import numpy as np
-from scipy.optimize import minimize
-from scipy.optimize import Bounds
-from scipy.interpolate import UnivariateSpline
-import pandas as pd
-
 
 def get_args():
     parser = argparse.ArgumentParser(
