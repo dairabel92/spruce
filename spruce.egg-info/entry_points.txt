@@ -1,0 +1,2 @@
+[console_scripts]
+spruce = spruce.spruce:main

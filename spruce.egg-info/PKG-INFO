@@ -1,3 +1,16 @@
+Metadata-Version: 2.4
+Name: spruce
+Version: 0.1.0
+Summary: SPrUCE: Ultraconserved Element diversity estimation using Gompertz modeling
+Author: Daira Melendez
+License: BSD-3-Clause
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: biopython
+
 #SPrUCE  
 **SPrUCE: Sigmoid Pi Requiring Ultraconserved Elements**  
 Tool for estimating nucleotide diversity (π) from UCE alignments.
@@ -5,18 +18,6 @@ Tool for estimating nucleotide diversity (π) from UCE alignments.
 ---
 
 SPrUCE is a lightweight and fast command-line tool for estimating nucleotide diversity (π) from Ultraconserved Element (UCE) alignments. It processes MAFFT-aligned UCE loci and models diversity across flanking regions, returning per-position π estimates and a final θ value.
-
-## Installation
-
-Install directly from GitHub:
-
-```bash
-pip install git+https://github.com/dairabel92/spruce.git
-
-After installation, verify:
-
-spruce --help
-
 
 SPrUCE integrates directly with the standard PHYLUCE pipeline (Faircloth Lab). The recommended input is the output of:
 
@@ -32,12 +33,8 @@ phyluce_align_seqcap_align \
 For population genomic analyses, edge trimming is recommended, but internal trimming should be avoided.
 
 SPrUCE accepts UCE alignments in:
-- FASTA | FA | FAS  
+- FASTA  
 - NEXUS  
-- PHY | PHYLIP 
-- CLUSTAL 
-- EMBOSS
-- STOCKHOLM
 
 Required arguments:
 

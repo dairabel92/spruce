@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+spruce/__init__.py
+spruce/spruce.py
+spruce.egg-info/PKG-INFO
+spruce.egg-info/SOURCES.txt
+spruce.egg-info/dependency_links.txt
+spruce.egg-info/entry_points.txt
+spruce.egg-info/requires.txt
+spruce.egg-info/top_level.txt
