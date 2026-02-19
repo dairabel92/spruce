@@ -8,9 +8,12 @@ SPrUCE is a lightweight and fast command-line tool for estimating nucleotide div
 
 ## Installation
 
-Install directly from GitHub:
+Recommended to create conda environment:
+conda create -n spruce_env python=3.10 -y
+conda activate spruce_env
 
-```bash
+Install directly from Github: 
+
 pip install git+https://github.com/dairabel92/spruce.git
 
 After installation, verify:
