@@ -56,7 +56,8 @@ Required arguments:
 | Flag | Description |
 |------|-------------|
 | `--alignments` | Directory containing UCE alignment files |
-| `--output-file` | Output file name |
+| `--output-file` | Output file name for csv file of all sites|
+| `--output-estimate` | Output file name for final estimates of theta |
 | `--method` | `stack` or `concat` |
 
 ---
@@ -71,7 +72,7 @@ Retains locus-specific nucleotide diversity (π) values at each position rather 
 
 SPrUCE produces:
 
-- **Final θ estimate** (genome-wide π) printed to screen
+- **Final θ estimate** (genome-wide π) printed to screen and saved to `--output-estimate` file
 - **Per-position π estimates**  written to file
 
 ---
@@ -95,6 +96,7 @@ Example command using the included test dataset:
 ```bash
 spruce \
   --alignments ./tests/data/plectrophenax_hyperboreus_uce \
+  --output-estimate estimates.csv \ 
   --output-file spruce_test_output.csv \
   --method stack
 ```
