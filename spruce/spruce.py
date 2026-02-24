@@ -41,7 +41,7 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio.Align import MultipleSeqAlignment
 
-VERSION="v0.1.0"
+VERSION="v0.2.0"
 
 def setup_logging(args):
     logging.basicConfig(
@@ -85,6 +85,12 @@ def get_args():
         required=True,
         action=FullPaths,
         help="""The name of the CSV file of substitutions""",
+    )
+    parser.add_argument(
+        "--output-estimate",
+        required=True,
+        action=FullPaths,
+        help="""The name of the file with output theta and other parameter estimates""",
     )
     parser.add_argument(
         "--input-format",
@@ -544,7 +550,10 @@ def main():
 
     print("The estimated theta is: " + str(res.x[0]))
     print("All Gompertz parameters are: " + str(res.x))
-    print(f"Output time: {elapsed_time:.2f} seconds")  # yay print out elapsed time
+    print(f"Optimization time: {elapsed_time:.2f} seconds")  # yay print out elapsed time
+
+    with open(args.output_estimate, "w") as oe:
+        oe.write("theta,beta,gamma\n%6f,%6f,%6f\n" %(res.x[0],res.x[1],res.x[2]))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1 @@
+* 0.2.0: Added mandatory argument `--output-estimate` to keep track of the output estimated parameters
