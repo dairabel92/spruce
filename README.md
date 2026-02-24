@@ -21,10 +21,11 @@ pip install git+https://github.com/dairabel92/spruce.git
 
 After installation, verify:
 
+```bash
 spruce --help
+```
 
-
-SPrUCE integrates directly with the standard PHYLUCE pipeline (Faircloth Lab). The recommended input is the output of:
+SPrUCE can integrate directly with the standard PHYLUCE pipeline (Faircloth Lab). The recommended input is the output of:
 
 ```bash
 phyluce_align_seqcap_align \
@@ -37,7 +38,11 @@ phyluce_align_seqcap_align \
     --incomplete-matrix
 ```
 
-For population genomic analyses, edge trimming is recommended, but internal trimming should be avoided.
+For population genomic analyses, edge trimming is recommended, but internal trimming should be avoided. UCE alignments can be generated from: 
+- Targeted UCE sequence capture data (e.g., biological samples enriched with UCE probes);
+- Whole-genome assemblies (e.g., WGS data where UCE loci are extracted *in silico*).
+
+PHYLUCE provides preprocessing tools and comprehensive tutorials for both workflows. For details on how to extract and align UCE loci from raw reads or genome assemblies, see the PHYLUCE tutorials: https://phyluce.readthedocs.io/en/latest/tutorials/index.html
 
 ## Usage
 
@@ -99,3 +104,12 @@ Developed by **Daira Melendez Belardi, Ali Osman Berk Sapci**
 UC San Diego — Mirarab Lab  
 GitHub: https://github.com/dairabel92
 
+---
+
+## Data Source
+
+The included test dataset is derived from the UCE data published in:
+
+Winker, K., Glenn, T. C., Faircloth, B. C., *et al.* (2018). *Ultraconserved elements (UCEs) illuminate the population genomics of a recent, high-latitude avian speciation event*. *PeerJ* **6**, e5735. doi:10.7717/peerj.5735
+
+Please cite the original publication if using these data.
