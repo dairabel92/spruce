@@ -81,11 +81,11 @@ SPrUCE produces:
 
 Users may manually control key parameters, including flank size (distance from the UCE center), weighting during model fitting, and minimum coverage thresholds. By default, SPrUCE selects an appropriate flank internally and applies coverage-based weighting, but these settings can be overridden if desired.
 
-| Option | Description |
-|--------|-------------|
-| `--flank` | Flank size on each side of the UCE core (e.g., 400 or 750) |
-| `--use-weights` | TRUE/FALSE (default TRUE). Applies coverage-based weighting during Gompertz fitting |
-| `--min-bases` | Minimum number of bases required for a position to be included |
+| Option | Description                                                                                                                                                                                                                                    |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--flank` | Flank size on each side of the UCE core (e.g., 400 or 750); if alignment has more position around the center, they will be ignored.                                                                                                            |
+| `--use-weights` | TRUE/FALSE (default TRUE). Applies coverage-based weighting during Gompertz fitting. These weights use variance of the esimator to down-weight position with low coverage.                                                                     |
+| `--min-bases` | Minimum number of bases required for a position to be included; if a site is gappy has has fewer than this provided number of non-gap sequences, we ignore it. Default: detectes the threshold automatically based on how fast coverage drops. |
 
 ---
 
