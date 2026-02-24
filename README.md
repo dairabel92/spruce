@@ -42,7 +42,9 @@ For population genomic analyses, edge trimming is recommended, but internal trim
 ## Usage
 
 SPrUCE accepts UCE alignments in: FASTA, FA, FAS, NEXUS, PHY, PHYLIP, CLUSTAL, EMBOSS, STOCKHOLM
-Note: For PHYLIP alignments containing long taxon names, the relaxed PHYLIP format is recommended.
+
+Note: For PHYLIP alignments containing long taxon names, the relaxed PHYLIP format (`phylip-relaxed`) is recommended to ensure compatibility with BioPython/AlignIO parsing.
+
 
 Required arguments: 
 
