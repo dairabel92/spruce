@@ -41,6 +41,7 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio.Align import MultipleSeqAlignment
 
+VERSION="v0.1.0"
 
 def setup_logging(args):
     logging.basicConfig(
@@ -70,7 +71,7 @@ def get_alignment_files(log, directory, file_format):
 
 def get_args():
     parser = argparse.ArgumentParser(
-        description="""Record variant positions in alignments"""
+        description=f"SPrUCE ({VERSION}): Sigmoid Pi Requiring Ultraconserved Elements"
     )
     parser.add_argument(
         "--alignments",
@@ -83,66 +84,63 @@ def get_args():
         "--output-file",
         required=True,
         action=FullPaths,
-        help="""The name of the CSV file of substitutions to plot as a smilogram using new equation.""",
-    )
-    parser.add_argument(
-        "--center-file", required=False, action=FullPaths, help="""""",
+        help="""The name of the CSV file of substitutions""",
     )
     parser.add_argument(
         "--input-format",
         dest="input_format",
         choices=["fasta", "nexus", "phylip", "clustal", "emboss", "stockholm"],
         default="fasta",
-        help="""The input alignment format""",
+        help="""The input alignment format (default: fasta)""",
     )
     parser.add_argument(
-        "--cores", type=int, default=1, help="""The number of cores to use.""",
+        "--cores", type=int, default=1, help="""The number of cores to use (default: 1)""",
     )
     parser.add_argument(
         "--mode",
         type=int,
         default=1,
-        help="""1: read alignments; 2: continue, read previous smiley output.""",
+        help="""1: read alignments; 2: continue, read previous smiley output (default: 1)""",
     )
     parser.add_argument(
         "--verbosity",
         type=str,
         choices=["INFO", "WARN", "CRITICAL"],
         default="INFO",
-        help="""The logging level to use.""",
+        help="""The logging level to use (default: INFO)""",
     )
     parser.add_argument(
         "--method",
         type=str,
         choices=["stack", "concat"],
-        default="INFO",
-        help="""The method to combine UCEs.""",
+        default="stack",
+        help="""The method to combine UCEs (default: stack)""",
     )
     parser.add_argument(
         "--flank",
         type=int,
         default=math.inf,
-        help="""The length of the flanking region to consider.""",
+        help="""The length of the flanking region to consider""",
     )
     parser.add_argument(
         "--min-bases",
         type=int,
         default=0,
-        help="""The minimum number of bases (non-gap) for a position to be considered.""",
+        help="""The minimum number of bases (non-gap) for a position to be considered (default: 0)""",
     )
     parser.add_argument(
         "--use-weights",
         default=True,
         type=bool,
         # action=argparse.BooleanOptionalAction,
-        help="""Use variance of the esimator to down-weight position with low signal.""",
+        help="""Use variance of the esimator to down-weight position with low signal (default: True)""",
     )
     parser.add_argument(
         "--log-path",
         action=FullPaths,
         type=is_dir,
         default=None,
-        help="""The path to a directory to hold logs.""",
+        help="""The path to a directory to hold logs""",
     )
     return parser.parse_args()
 
@@ -418,16 +416,6 @@ def main():
         rcf = dict()
 
         centers = {}
-        if args.center_file:
-            with open(args.center_file) as f:
-                lines = f.readlines()
-                for line in lines:
-                    try:
-                        uce_id, uce_n, uce_center, center_pos = line.split(",")
-                        centers[uce_id] = int(center_pos.strip())
-                    except Exception as e:
-                        pass
-
         # adding locus set for thresold
         locus_set = set()
         for locus, result, length, bases in results:
