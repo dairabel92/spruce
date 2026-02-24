@@ -42,6 +42,7 @@ For population genomic analyses, edge trimming is recommended, but internal trim
 ## Usage
 
 SPrUCE accepts UCE alignments in: FASTA, FA, FAS, NEXUS, PHY, PHYLIP, CLUSTAL, EMBOSS, STOCKHOLM
+Note: For PHYLIP alignments containing long taxon names, the relaxed PHYLIP format is recommended.
 
 Required arguments: 
 
@@ -64,7 +65,7 @@ Retains locus-specific nucleotide diversity (π) values at each position rather 
 SPrUCE produces:
 
 - **Final θ estimate** (genome-wide π) printed to screen
-- **Per-position π estimates** across all UCEs written to file
+- **Per-position π estimates**  written to file
 
 ---
 
