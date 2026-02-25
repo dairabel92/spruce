@@ -71,10 +71,10 @@ Stacks (aggregates) per-position nucleotide diversity (π) across all UCEs at ea
 ### **CONCAT**
 Retains locus-specific nucleotide diversity (π) values at each position rather than averaging across UCEs. A Gompertz curve is fit by minimizing residuals across all locus–position observations simultaneously.
 
-### **SPrUCE produces:***
+### **SPrUCE produces:**
 
 - **Final θ estimate** (genome-wide π) printed to screen and saved to `--output-estimate` file
-- **Per-position π estimates**  written to 'ouptut-file' file 
+- **Per-position π estimates**  written to `--ouptut-file` file 
 
 ---
 
@@ -84,9 +84,9 @@ Users may manually control key parameters, including flank size (distance from t
 
 | Option | Description                                                                                                                                                                                                                                    |
 |--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--flank` | Flank size on each side of the UCE core (e.g., 400 or 750). Positions beyond this distance from the center are ignored. Default: automatically determined from the data.                                                                                                             |
-| `--use-weights` | TRUE/FALSE. Default: TRUE. | `--use-weights` | TRUE/FALSE. Default: TRUE. Applies sample-size–based weighting during Gompertz fitting to down-weight positions with low coverage (e.g., gappy or missing sites). |                      
-| `--min-bases` | Minimum number of bases required for a position to be included; if a site is gappy has has fewer than this provided number of non-gap sequences, we ignore it. Default: automatically determined based on coverage. |
+| `--flank` | Flank size on each side of the UCE core (e.g., 400 or 750). Positions beyond this distance from the center are ignored. Default: automatically determined from the data.                                  |
+| `--use-weights` | TRUE/FALSE. Default: TRUE. Applies sample-size–based weighting during Gompertz fitting to down-weight positions with low sample size (e.g., gappy or missing sites). |                         
+| `--min-bases` | Minimum number of bases required for a position to be included; if a site is gappy has fewer than this provided number of non-gap sequences, we ignore it. Default: automatically determined based on coverage. |
 
 ---
 
@@ -111,7 +111,7 @@ spruce \
 ```
  
 ## Contact
-Developed by **Daira Melendez Belardi, Ali Osman Berk Sapcib**  
+Developed by **Daira Melendez Belardi, Ali Osman Berk Sapci**  
 UC San Diego — Mirarab Lab  
 GitHub: https://github.com/dairabel92
 
