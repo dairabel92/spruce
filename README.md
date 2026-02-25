@@ -25,7 +25,7 @@ After installation, verify:
 spruce --help
 ```
 
-SPrUCE can integrate directly with the standard PHYLUCE pipeline (Faircloth Lab). The recommended input is the output of:
+SPrUCE can integrate directly with the standard PHYLUCE pipeline (Faircloth Lab). The recommended input is the output of this step:
 
 ```bash
 phyluce_align_seqcap_align \
@@ -38,11 +38,13 @@ phyluce_align_seqcap_align \
     --incomplete-matrix
 ```
 
-For population genomic analyses, edge trimming is recommended, but internal trimming should be avoided. UCE alignments can be generated from: 
+For population genomic analyses, edge trimming is recommended, but internal trimming should be avoided.
+
+UCE alignments can be generated from: 
 - Targeted UCE sequence capture data (e.g., biological samples enriched with UCE probes);
 - Whole-genome assemblies (e.g., WGS data where UCE loci are extracted *in silico*).
 
-PHYLUCE provides preprocessing tools and comprehensive tutorials for both workflows. For details on how to extract and align UCE loci from raw reads or genome assemblies, see the PHYLUCE tutorials: https://phyluce.readthedocs.io/en/latest/tutorials/index.html
+For details on how to extract and align UCE loci from raw reads or genome assemblies, see the [PHYLUCE tutorials](https://phyluce.readthedocs.io/en/latest/tutorials/index.html).
 
 ## Usage
 
@@ -50,30 +52,29 @@ SPrUCE accepts UCE alignments in: FASTA, FA, FAS, NEXUS, PHY, PHYLIP, CLUSTAL, E
 
 Note: For PHYLIP alignments containing long taxon names, the relaxed PHYLIP format (`phylip-relaxed`) is recommended to ensure compatibility with BioPython/AlignIO parsing.
 
-
-Required arguments: 
+### Required arguments: 
 
 | Flag | Description |
 |------|-------------|
 | `--alignments` | Directory containing UCE alignment files |
 | `--output-file` | Output file name for csv file of all sites|
-| `--output-estimate` | Output file name for final estimates of theta |
-| `--method` | `stack` or `concat` |
+| `--output-estimate` | Output file name for final estimate of theta and other gompertz parameters |
+| `--method` | `stack` (default) or `concat` |
 
 ---
 
-SPrUCE will take UCE loci  alignment as input and has two method options:
+SPrUCE will take UCE loci alignment as input and has two method options:
 
-### **STACK**
+### **STACK** (Default)
 Stacks (aggregates) per-position nucleotide diversity (π) across all UCEs at each distance from the UCE center. A Gompertz decay curve is then fit to these position-specific means.
 
 ### **CONCAT**
-Retains locus-specific nucleotide diversity (π) values at each position rather than averaging across UCEs. A single global Gompertz curve is fit by minimizing residuals across all locus–position observations simultaneously.
+Retains locus-specific nucleotide diversity (π) values at each position rather than averaging across UCEs. A Gompertz curve is fit by minimizing residuals across all locus–position observations simultaneously.
 
-SPrUCE produces:
+### **SPrUCE produces:***
 
 - **Final θ estimate** (genome-wide π) printed to screen and saved to `--output-estimate` file
-- **Per-position π estimates**  written to file
+- **Per-position π estimates**  written to 'ouptut-file' file 
 
 ---
 
@@ -83,13 +84,21 @@ Users may manually control key parameters, including flank size (distance from t
 
 | Option | Description                                                                                                                                                                                                                                    |
 |--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--flank` | Flank size on each side of the UCE core (e.g., 400 or 750); if alignment has more position around the center, they will be ignored.                                                                                                            |
-| `--use-weights` | TRUE/FALSE (default TRUE). Applies coverage-based weighting during Gompertz fitting. These weights use variance of the esimator to down-weight position with low coverage.                                                                     |
-| `--min-bases` | Minimum number of bases required for a position to be included; if a site is gappy has has fewer than this provided number of non-gap sequences, we ignore it. Default: detectes the threshold automatically based on how fast coverage drops. |
+| `--flank` | Flank size on each side of the UCE core (e.g., 400 or 750). Positions beyond this distance from the center are ignored. Default: automatically determined from the data.                                                                                                             |
+| `--use-weights` | TRUE/FALSE. Default: TRUE. | `--use-weights` | TRUE/FALSE. Default: TRUE. Applies sample-size–based weighting during Gompertz fitting to down-weight positions with low coverage (e.g., gappy or missing sites). |                      
+| `--min-bases` | Minimum number of bases required for a position to be included; if a site is gappy has has fewer than this provided number of non-gap sequences, we ignore it. Default: automatically determined based on coverage. |
 
 ---
 
 ## Test Example
+
+The test dataset consists of UCE alignments from McKay's Bunting (*Plectrophenax hyperboreus*) published in Winker et al. (2018) (see citation below).
+
+Clone the GitHub repository to access test dataset:
+
+```bash
+git clone https://github.com/dairabel92/spruce.git
+```
 
 Example command using the included test dataset:
 
@@ -102,7 +111,7 @@ spruce \
 ```
  
 ## Contact
-Developed by **Daira Melendez Belardi, Ali Osman Berk Sapci**  
+Developed by **Daira Melendez Belardi, Ali Osman Berk Sapcib**  
 UC San Diego — Mirarab Lab  
 GitHub: https://github.com/dairabel92
 
@@ -115,3 +124,4 @@ The included test dataset is derived from the UCE data published in:
 Winker, K., Glenn, T. C., Faircloth, B. C., *et al.* (2018). *Ultraconserved elements (UCEs) illuminate the population genomics of a recent, high-latitude avian speciation event*. *PeerJ* **6**, e5735. doi:10.7717/peerj.5735
 
 Please cite the original publication if using these data.
+
