@@ -71,10 +71,15 @@ Stacks (aggregates) per-position nucleotide diversity (π) across all UCEs at ea
 ### **CONCAT**
 Retains locus-specific nucleotide diversity (π) values at each position rather than averaging across UCEs. A Gompertz curve is fit by minimizing residuals across all locus–position observations simultaneously.
 
-### **SPrUCE produces:**
+> **Please note:** In the current implementation, increasing the number of cores does **not** speed up `CONCAT` mode. The concatenated analysis is not parallelized at this stage.  
+>
+> We strongly recommend submitting `CONCAT` runs as a cluster job (e.g., via SLURM) rather than running interactively, as this mode can take substantially longer to complete depending on dataset size.
+
+
+### **SPrUCE PRODUCES:**
 
 - **Final θ estimate** (genome-wide π) printed to screen and saved to `--output-estimate` file
-- **Per-position π estimates**  written to `--ouptut-file` file 
+- **Per-position π estimates**  written to `--output-file` file 
 
 ---
 
